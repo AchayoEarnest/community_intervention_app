@@ -1,1 +1,1 @@
-# comminity_intervention_app
+# community_intervention_app
