@@ -1,16 +1,16 @@
-import mysql.connector
+import sqlite3
 
-# Establish the database connection
-database = mysql.connector.connect(
-    host='localhost',
-    user='earnest',
-    passwd='access2023'
-)
+database = sqlite3.connect('intervention_app.db')
 
-# Prepare a cursor object
 cursorObject = database.cursor()
 
-# Execute the SQL query to create the database
-cursorObject.execute('CREATE DATABASE intervention_app')
+cursorObject.execute('''CREATE TABLE IF NOT EXISTS intervention_app (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            name TEXT NOT NULL,
+                            description TEXT
+                        )''')
 
-print("db created successfully!")
+print("SQLite database and table created successfully!")
+
+database.commit()
+database.close()

@@ -64,12 +64,8 @@ WSGI_APPLICATION = 'community_intervention_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'elderco',
-        'USER': 'earnest',
-        'PASSWORD': 'access2023',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'intervention_app.db',
     }
 }
 
