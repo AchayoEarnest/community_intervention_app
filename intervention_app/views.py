@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 # Create your views here.
@@ -14,16 +14,17 @@ def home(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, "You have successfully logged in")
+            messages.success(request, "You have successfully Logged In!")
             return redirect('home')
         else:
-            messages.success(request, "Wrong username or password, please try again!")
+            messages.success(request, "Username or password is incorrect, please try again!")
             return redirect('home')
     else:
         return render(request, 'home.html', {})
     
-def logout(request):
-    pass
+def logout_user(request):
+    logout(request)
+    messages.success(request, "You have been logged out...")
 
 def register(request):
     pass
