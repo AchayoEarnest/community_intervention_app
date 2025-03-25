@@ -1,62 +1,78 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
+<h1>Enrollments</h1>
+
+{{enrollment}}
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <td scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Contact</th>
+      <th scope="col">County</th>
+      <th scope="col">Sub County</th>
+      <th scope="col">Ward</th>
+      <th scope="col">Village</th>
+      <th scope="col">Guardian Phone Number</th>
+      <th scope="col">School</th>
+      <th scope="col">Landmark</th>
+      <th scope="col">Age</th>
+      <th scope="col">Enrolled By:</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if enrollments %} {% for enrollment in enrollments %}
+
+    <tr>
+      <td scope="row">{{enrollment.id}}</td>
+      <td>{{enrollment.name}}</td>
+      <td>{{enrollment.date_of_birth}}</td>
+      <td>{{enrollment.contact_phone}}</td>
+      <td>{{enrollment.county}}</td>
+      <td>{{enrollment.sub_county}}</td>
+      <td>{{enrollment.ward}}</td>
+      <td>{{enrollment.village}}</td>
+      <td>{{enrollment.guadian_phone_number}}</td>
+      <td>{{enrollment.school}}</td>
+      <td>{{enrollment.landmark}}</td>
+      <td>{{enrollment.age}}</td>
+      <td>{{enrollment.user}}</td>
+      <td> <button type="submit" class="btn btn-secondary">Edit</button> 
+        <button type="submit" class="btn btn-danger">Delete</button></td>
+    </tr>
+    {% endfor %} {% endif %}
+  </tbody>
+</table>
+{% else %}
+
 <div class="col-md-6 offset-md-3">
-  {% if user.is_authenticated %}
-  <h1>Records</h1>
-  <table class="table table-striped">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
-  {% else %}
-  <h1>Login</h1>
+<h1>Login</h1>
+<br />
+<form method="POST" action="{%url 'home'%}">
+  {% csrf_token %}
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      name="username"
+      required
+    />
+  </div>
   <br />
-  <form method="POST" action="{%url 'home'%}">
-    {% csrf_token %}
-    <div class="mb-3">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Username"
-        name="username"
-        required
-      />
-    </div>
-    <br />
-    <div class="mb-3">
-      <input
-        type="password"
-        class="form-control"
-        placeholder="Password"
-        name="password"
-        required
-      />
-    </div>
-    <br />
-    <button type="submit" class="btn btn-secondary">Login</button>
-  </form>
+  <div class="mb-3">
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      name="password"
+      required
+    />
+  </div>
+  <br />
+  <button type="submit" class="btn btn-secondary">Login</button>
+</form>
 </div>
 {% endif %} {% endblock %}

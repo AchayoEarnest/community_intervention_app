@@ -12,6 +12,7 @@ class Enrollment(models.Model):
     contact_phone = models.CharField(max_length=12)
     county = models.CharField(max_length=100)
     sub_county = models.CharField(max_length=100)
+    ward = models.CharField(max_length=100)
     village = models.CharField(max_length=100)
     guadian_phone_number = models.CharField(max_length=12)
     school= models.CharField(max_length=100)
