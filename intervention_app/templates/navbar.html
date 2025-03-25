@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="{%url 'home' %}">Intervention App</a>
     <button
@@ -23,7 +23,7 @@
 
               {% else %}
 
-          <a class="nav-link active" aria-current="page" href="{url 'register'}"
+          <a class="nav-link active" aria-current="page" href="{%url 'register'%}"
             >Register</a
           >
 
@@ -34,6 +34,22 @@
 
         {% endif %}
       </ul>
+      <div class="d-flex text-white" >
+        <li class="nav-item dropdown list-unstyled">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Reports
+          </a>
+          <ul class="dropdown-menu list-unstyled">
+            <li><a class="dropdown-item" href="#">Raw Exports</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Insights</a></li>
+          </ul>
+        </li>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
   </div>
 </nav>
