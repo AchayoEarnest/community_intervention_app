@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Register!</h1>
+<div class="col-md-6 offset-md-3"></div>
 <form method="POST" action="">
   {% csrf_token %} {% if form.errors %}
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -17,4 +18,5 @@
   <br />
   <button type="submit" class="btn btn-secondary">Register</button>
 </form>
+</div>
 {% endblock %}
