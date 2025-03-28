@@ -25,7 +25,7 @@ class Enrollment(models.Model):
 
 
 class Intervention(models.Model):
-    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
+    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, related_name='interventions')
     intervention_name = models.CharField(max_length=100)
     intervention_cartegory = models.CharField(max_length=100)
     comments = models.TextField(blank=True, null=True)

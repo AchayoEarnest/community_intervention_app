@@ -50,3 +50,6 @@ def register_user(request):
     return render(request, 'register.html', {'form':form})
     
 
+def reports(request):
+    return render(request, 'reports.html')
+
