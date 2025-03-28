@@ -36,9 +36,15 @@ class SignUpForm(UserCreationForm):
 class Enrollment(forms.ModelForm):
 	class Meta:
 		model = Enrollment
-		fields = ['name', 'age']
+		fields = ['name', 'date_of_birth', 'age', 'contact_phone', 'county',
+            'sub_county', 'ward', 'village', 'guadian_phone_number',
+            'school', 'landmark', 'user']
+		
+		widgets = {
+            'user': forms.HiddenInput(),
+        }
 
 class InterventionFoem(forms.ModelFoem):
 	class Meta:
 		model = Intervention
-		fields = ['name', 'description']
+		fields = ['enrollment', 'intervention_name', 'intervention_cartegory', 'comments', 'date_of_intervention', 'updated_by']
