@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 <h2>Add new Enrollment</h2>
-<form action="post">
+<form action="{% url 'add_enrollment' %}" method="POST">
   {% csrf_token %} {{ form.as_p}}
 
   <button type="submit">Save</button>
 </form>
-<a href="{% url 'enrollment_list' %}">Back to List</a>
+<a href="{% url 'home' %}">Back to List</a>
 {% endblock %}

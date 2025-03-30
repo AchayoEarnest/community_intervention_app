@@ -85,5 +85,16 @@ def add_intervention(request, enrollment_id):
         form = InterventionForm(initial={'enrollment': enrollment})
     return render(request, 'add_intervention.html', {'form' : form})
 
+@login_required
+def ayp_enrollment_record(request, enrollment_id):
+    if request.user.is_authenticated:
+        # find the ayp record
+        ayp_enrollment_record = Enrollment.objects.get(id=enrollment_id)
+        return render(request, 'enrollment_record.html', {'ayp_enrollment_record' : ayp_enrollment_record})
+    else:
+        messages.success(request, "You must be logged in first to view that page!")
+        return redirect('home')
+
+
 
 

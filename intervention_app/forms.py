@@ -44,9 +44,9 @@ class EnrollmentForm(forms.ModelForm):
             'sub_county', 'ward', 'village', 'guadian_phone_number',
             'school', 'landmark', 'user']
 		
-		widgets = {
-            'user': forms.HiddenInput(),
-        }
+		# widgets = {
+        #     'user': forms.HiddenInput(),
+        # }
 
 class InterventionForm(forms.ModelForm):
 	class Meta:
