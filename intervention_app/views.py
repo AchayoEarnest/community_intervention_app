@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm
 from .models import Enrollment
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -52,4 +53,13 @@ def register_user(request):
 
 def reports(request):
     return render(request, 'reports.html')
+
+@login_required
+def add_enrollment(request):
+    pass
+
+@login_required
+def add_intervention(request):
+    pass
+
 

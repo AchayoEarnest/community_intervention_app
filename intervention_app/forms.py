@@ -44,7 +44,7 @@ class Enrollment(forms.ModelForm):
             'user': forms.HiddenInput(),
         }
 
-class InterventionFoem(forms.ModelFoem):
+class InterventionFoem(forms.ModelForm):
 	class Meta:
 		model = Intervention
 		fields = ['enrollment', 'intervention_name', 'intervention_cartegory', 'comments', 'date_of_intervention', 'updated_by']
