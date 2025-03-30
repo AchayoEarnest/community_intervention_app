@@ -107,3 +107,19 @@ def delete_ayp_enrollment_record(request, enrollment_id):
         return redirect('home')
 
 
+@login_required
+def update_ayp_enrollment_record(request, enrollment_id):
+    if request.user.is_authenticated:
+        current_record = Enrollment.objects.get(id=enrollment_id)
+        form = EnrollmentForm(request.POST or None, instance=current_record)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Record updated successfully!")
+            return redirect('home')
+        return render(request, 'update_ayp_enrollment_record.html', {'form' : form})
+    else:
+        messages.success(request, "You must be logged in first to perform this action!")
+        return redirect('home')
+
+
+        
