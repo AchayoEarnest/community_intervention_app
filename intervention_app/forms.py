@@ -33,7 +33,11 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 	
-class Enrollment(forms.ModelForm):
+class EnrollmentForm(forms.ModelForm):
+	date_of_birth = forms.DateField(
+		widget=forms.DateInput(attrs={'type': 'date'}),
+		help_text="Select your date of birth"
+	)
 	class Meta:
 		model = Enrollment
 		fields = ['name', 'date_of_birth', 'age', 'contact_phone', 'county',
@@ -44,7 +48,11 @@ class Enrollment(forms.ModelForm):
             'user': forms.HiddenInput(),
         }
 
-class InterventionFoem(forms.ModelForm):
+class InterventionForm(forms.ModelForm):
 	class Meta:
 		model = Intervention
 		fields = ['enrollment', 'intervention_name', 'intervention_cartegory', 'comments', 'date_of_intervention', 'updated_by']
+
+		widgets = {
+            'updated_by': forms.HiddenInput(),
+        }

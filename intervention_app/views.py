@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, EnrollmentForm, InterventionForm
 from .models import Enrollment
 from django.contrib.auth.decorators import login_required
 
@@ -56,10 +56,34 @@ def reports(request):
 
 @login_required
 def add_enrollment(request):
-    pass
+    if request.method == "POST":
+        form = EnrollmentForm(request.POST)
+        if form.is_valid():
+            enrollment = form.save(commit=False)
+            enrollment.user = request.user
+            enrollment.save()
+            return redirect('enrollment_list')
+        
+    else:
+        form = EnrollmentForm()
+    return render(request, 'add_enrollment.html', {'form': form})
 
 @login_required
-def add_intervention(request):
-    pass
+def add_intervention(request, enrollment_id):
+    enrollment = get_list_or_404(Enrollment, id=enrollment_id)
+    if request.nethod == "POST":
+        form = InterventionForm(request.POST)
+        if form.is_valid():
+            intervention = form.save()
+            intervention.updated_by = request.user
+            intervention.enrollment = enrollment
+            intervention.save()
+
+            return redirect('enrollment_detail', enrollment_id = enrollment.id)
+        
+    else: 
+        form = InterventionForm(initial={'enrollment': enrollment})
+    return render(request, 'add_intervention.html', {'form' : form})
+
 
 
