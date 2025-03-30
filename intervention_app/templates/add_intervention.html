@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Add intervention for {{ enrollment.name}}</h2>
+<form action="post">
+  {% csrf_token %} {{ form.as_p}}
+
+  <button type="submit">Save</button>
+</form>
+<a href="{% url 'enrollment_list' %}">Back to Interventions</a>
+{% endblock %}
