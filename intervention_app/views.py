@@ -95,6 +95,15 @@ def ayp_enrollment_record(request, enrollment_id):
         messages.success(request, "You must be logged in first to view that page!")
         return redirect('home')
 
-
+@login_required
+def delete_ayp_enrollment_record(request, enrollment_id):
+    if request.user.is_authenticated:
+        delete_it = Enrollment.objects.get(id=enrollment_id)
+        delete_it.delete()
+        messages.success(request, "AYP Record deleted successfully!")
+        return redirect('home')
+    else:
+        messages.success(request, "You must be logged in first to perform this action!")
+        return redirect('home')
 
 

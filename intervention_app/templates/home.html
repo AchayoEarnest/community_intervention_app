@@ -39,8 +39,17 @@
       <td>{{enrollment.landmark}}</td>
       <td>{{enrollment.age}}</td>
       <td>{{enrollment.user}}</td>
-      <td><a href="{%url 'ayp_enrollment_record' enrollment.id%}" class="btn btn-primary">View</a> <button type="submit" class="btn btn-secondary">Edit</button> 
-        <button type="submit" class="btn btn-danger">Delete</button></td>
+      <td><a href="{%url 'ayp_enrollment_record' enrollment.id%}" class="btn btn-primary">View</a><a
+        href="{%url 'home' %}"
+        class="btn btn-secondary"
+        >Edit</a
+      > 
+      <a
+        href="{%url 'delete_ayp_enrollment_record' enrollment.id%}"
+        class="btn btn-danger"
+        >Delete</a
+      > 
+      
     </tr>
     {% endfor %} {% endif %}
   </tbody>

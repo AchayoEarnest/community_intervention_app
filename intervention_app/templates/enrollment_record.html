@@ -48,8 +48,13 @@
     </li>
   </ul>
 </div>
-<br/>
+<br />
 
 <a href="{%url 'home' %}" class="btn btn-secondary">Back</a>
+<a
+  href="{%url 'delete_ayp_enrollment_record' ayp_enrollment_record.id%}"
+  class="btn btn-danger"
+  >Delete</a
+>
 
 {% endblock %}
