@@ -1,28 +1,55 @@
 {% extends 'base.html' %} {% block content %}
-<h1>AYP Details</h1>
-    <td scope="row">{{ayp_enrollment_record.id}}</td>
-    {{ayp_enrollment_record.name}}
-    <br/>
-    {{ayp_enrollment_record.date_of_birth}}
-    <br/>
-    {{ayp_enrollment_record.contact_phone}}
-    <br/>
-    {{ayp_enrollment_record.county}}
-    <br/>
-    {{ayp_enrollment_record.sub_county}}
-    <br/>
-    {{ayp_enrollment_record.ward}}
-    <br/>
-    {{ayp_enrollment_record.village}}
-    <br/>
-    {{ayp_enrollment_record.guadian_phone_number}}
-    <br/>
-    {{ayp_enrollment_record.school}}
-    <br/>
-    {{ayp_enrollment_record.landmark}}
-    <br/>
-    {{ayp_enrollment_record.age}}
-    <br/>
-    {{ayp_enrollment_record.user}}
-    <br/>
+
+<div class="card" style="width: 36rem">
+  <div class="card-header">
+    <h2>{{ayp_enrollment_record.name}}</h2>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <strong>ID: </strong>{{ayp_enrollment_record.id}}
+    </li>
+    <li class="list-group-item">
+      <strong>Name: </strong>{{ayp_enrollment_record.name}}
+    </li>
+
+    <li class="list-group-item">
+      <strong>Date of birth: </strong>{{ayp_enrollment_record.date_of_birth}}
+    </li>
+    <li class="list-group-item">
+      <strong>Phone number: </strong>{{ayp_enrollment_record.contact_phone}}
+    </li>
+    <li class="list-group-item">
+      <strong>County: </strong>{{ayp_enrollment_record.county}}
+    </li>
+    <li class="list-group-item">
+      <strong>Sub-county: </strong>{{ayp_enrollment_record.sub_county}}
+    </li>
+    <li class="list-group-item">
+      <strong>Ward: </strong>{{ayp_enrollment_record.ward}}
+    </li>
+    <li class="list-group-item">
+      <strong>Village: </strong>{{ayp_enrollment_record.village}}
+    </li>
+    <li class="list-group-item">
+      <strong>Guardian Phone number: </strong>
+      {{ayp_enrollment_record.guadian_phone_number}}
+    </li>
+    <li class="list-group-item">
+      <strong>School: </strong>{{ayp_enrollment_record.school}}
+    </li>
+    <li class="list-group-item">
+      <strong>Landmark: </strong>{{ayp_enrollment_record.landmark}}
+    </li>
+    <li class="list-group-item">
+      <strong>Age: </strong>{{ayp_enrollment_record.age}}
+    </li>
+    <li class="list-group-item">
+      <strong>User: </strong>{{ayp_enrollment_record.user}}
+    </li>
+  </ul>
+</div>
+<br/>
+
+<a href="{%url 'home' %}" class="btn btn-secondary">Back</a>
+
 {% endblock %}

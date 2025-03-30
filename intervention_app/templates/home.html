@@ -39,7 +39,7 @@
       <td>{{enrollment.landmark}}</td>
       <td>{{enrollment.age}}</td>
       <td>{{enrollment.user}}</td>
-      <td> <button type="submit" class="btn btn-secondary">Edit</button> 
+      <td><a href="{%url 'ayp_enrollment_record' enrollment.id%}" class="btn btn-primary">View</a> <button type="submit" class="btn btn-secondary">Edit</button> 
         <button type="submit" class="btn btn-danger">Delete</button></td>
     </tr>
     {% endfor %} {% endif %}
