@@ -39,21 +39,26 @@
       <td>{{enrollment.landmark}}</td>
       <td>{{enrollment.age}}</td>
       <td>{{enrollment.user}}</td>
-      <td><a href="{%url 'ayp_enrollment_record' enrollment.id%}" class="btn btn-primary">View</a><a
-        href="{%url 'update_ayp_enrollment_record' enrollment.id%}"
-        class="btn btn-secondary"
-        >Update</a
-      >
-      <a
+      <td>
+        <div style="display: flex; gap: 10px;" >
+          <a href="{%url 'ayp_enrollment_record' enrollment.id%}" class="btn btn-primary btn-sm">View</a><a
+              href="{%url 'update_ayp_enrollment_record' enrollment.id%}"
+              class="btn btn-success btn-sm"
+              >Update</a
+            >
+
+        </div>
+      <!-- <a
         href="{%url 'delete_ayp_enrollment_record' enrollment.id%}"
-        class="btn btn-danger"
+        class="btn btn-danger btn-sm"
         >Delete</a
-      > 
+      >  -->
       
     </tr>
     {% endfor %} {% endif %}
   </tbody>
 </table>
+
 <a href="{% url 'add_enrollment' %}" class="btn btn-primary">Add Enrollment</a>
 {% else %}
 
@@ -84,7 +89,6 @@
   <br />
   <button type="submit" class="btn btn-secondary">Login</button>
 </form>
-
 </div>
 
 {% endif %} {% endblock %}

@@ -126,6 +126,7 @@ def update_ayp_enrollment_record(request, enrollment_id):
         messages.success(request, "You must be logged in first to perform this action!")
         return redirect('home')
 
+# API Views
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
@@ -142,8 +143,8 @@ def enrollmentList(request):
 
 @api_view(['GET'])
 def enrollmentDetail(request, enrollment_id):
-    enrollments = Enrollment.objects.get(id=enrollment_id)
-    serializer = EnrollmentSerializer(enrollments, many=False)
+    enrollment = Enrollment.objects.get(id=enrollment_id)
+    serializer = EnrollmentSerializer(enrollment, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
@@ -158,7 +159,7 @@ def enrollmentCreate(request):
 @api_view(['POST'])
 def enrollmentUpdate(request, enrollment_id):
     enrollment = Enrollment.objects.get(id=enrollment_id)
-    serializer = EnrollmentSerializer(isinstance=Enrollment, data=request.data)
+    serializer = EnrollmentSerializer(instance=enrollment, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
