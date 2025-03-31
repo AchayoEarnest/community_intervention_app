@@ -146,7 +146,7 @@ def enrollmentDetail(request, enrollment_id):
     serializer = EnrollmentSerializer(enrollments, many=False)
     return Response(serializer.data)
 
-@api_view(['GET'])
+@api_view(['POST'])
 def enrollmentCreate(request):
     serializer = EnrollmentSerializer(data=request.data)
 
@@ -155,12 +155,20 @@ def enrollmentCreate(request):
 
     return Response(serializer.data)
 
-@api_view(['GET'])
-def enrollmentCreate(request, enrollment_id):
-    enrollments = Enrollment.objects.get(id=enrollment_id)
+@api_view(['POST'])
+def enrollmentUpdate(request, enrollment_id):
+    enrollment = Enrollment.objects.get(id=enrollment_id)
     serializer = EnrollmentSerializer(isinstance=Enrollment, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
 
     return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def enrollmentDelete(request, enrollment_id):
+    enrollment = Enrollment.objects.get(id=enrollment_id)
+    enrollment.delete()
+
+    return Response("AYP successfully deleted!")
