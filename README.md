@@ -12,11 +12,11 @@ Features
 #Technologies Used
 • Backend: Django, Django REST Framework
 • Frontend: HTML, CSS, Bootstrap
-• Database: SQLite
+• Database: SQLite3
 • Authentication: Django Authentication System
 
 #Installation
-Prerequisites
+#Prerequisites
 Ensure you have the following installed:
 • Python 3.8+
 • Django 4+
@@ -25,7 +25,7 @@ Ensure you have the following installed:
 #Setup
 
 1. Clone the Repository
-2. git clone https://github.com/yourusername/community-intervention-app.git
+2. git clone https://github.com/achayoearnest/community-intervention-app.git
    cd community-intervention-app
 3. Create a Virtual Environment
 4. python -m venv venv
