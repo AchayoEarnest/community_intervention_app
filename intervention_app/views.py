@@ -154,3 +154,13 @@ def enrollmentCreate(request):
         serializer.save()
 
     return Response(serializer.data)
+
+@api_view(['GET'])
+def enrollmentCreate(request, enrollment_id):
+    enrollments = Enrollment.objects.get(id=enrollment_id)
+    serializer = EnrollmentSerializer(isinstance=Enrollment, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)

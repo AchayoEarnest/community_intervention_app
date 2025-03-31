@@ -17,4 +17,5 @@ urlpatterns = [
     path('enrollment-list-api/', views.enrollmentList, name="enrollment-list-api"),
     path('enrollment-detail-api/<str:enrollment_id>', views.enrollmentDetail, name="enrollment-detail"),
     path('enrollment-create/', views.enrollmentCreate, name="enrollment-create"),
+    path('enrollment-update/<str:enrollment_id>', views.enrollmentDetail, name="enrollment-update"),
 ]
