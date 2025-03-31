@@ -31,7 +31,8 @@ def home(request):
             return redirect('home')
     else:
         return render(request, 'home.html', {'enrollments': enrollments})
-    
+
+
 def logout_user(request):
     logout(request)
     messages.success(request, "You have been logged out...")
@@ -70,7 +71,7 @@ def add_enrollment(request):
             return redirect('enrollment_list')
         
     else:
-        form = EnrollmentForm()
+        form = EnrollmentForm(initial={'user': request.user})
     return render(request, 'add_enrollment.html', {'form': form})
 
 @login_required
