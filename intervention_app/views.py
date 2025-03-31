@@ -1,9 +1,14 @@
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, EnrollmentForm, InterventionForm
 from .models import Enrollment
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import EnrollmentSerializer
+
 
 # Create your views here.
 
@@ -70,8 +75,8 @@ def add_enrollment(request):
 
 @login_required
 def add_intervention(request, enrollment_id):
-    enrollment = get_list_or_404(Enrollment, id=enrollment_id)
-    if request.nethod == "POST":
+    enrollment = get_object_or_404(Enrollment, id=enrollment_id)
+    if request.method == "POST":
         form = InterventionForm(request.POST)
         if form.is_valid():
             intervention = form.save()
@@ -121,5 +126,31 @@ def update_ayp_enrollment_record(request, enrollment_id):
         messages.success(request, "You must be logged in first to perform this action!")
         return redirect('home')
 
+@api_view(['GET'])
+def apiOverview(request):
+    api_urls = {
+        'enrollment_list': '/enrollment_list/',
+        'create_enrollment': '/enrollments/add/',
+    }
+    return Response(api_urls)
 
-        
+@api_view(['GET'])
+def enrollmentList(request):
+    enrollments = Enrollment.objects.all()
+    serializer = EnrollmentSerializer(enrollments, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def enrollmentDetail(request, enrollment_id):
+    enrollments = Enrollment.objects.get(id=enrollment_id)
+    serializer = EnrollmentSerializer(enrollments, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def enrollmentCreate(request):
+    serializer = EnrollmentSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)

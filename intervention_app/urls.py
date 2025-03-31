@@ -12,6 +12,9 @@ urlpatterns = [
     path('interventions/add/<int:enrollment_id>/', views.add_intervention, name="add_intervention"),
     path('ayp_enrollment_record/<int:enrollment_id>/', views.ayp_enrollment_record, name="ayp_enrollment_record"),
     path('delete_ayp_enrollment_record/<int:enrollment_id>/', views.delete_ayp_enrollment_record, name="delete_ayp_enrollment_record" ),
-    path('update_ayp_enrollment_record/<int:enrollment_id>/', views.update_ayp_enrollment_record, name="update_ayp_enrollment_record" )
-
+    path('update_ayp_enrollment_record/<int:enrollment_id>/', views.update_ayp_enrollment_record, name="update_ayp_enrollment_record" ),
+    path('api/', views.apiOverview, name="api-overview"),
+    path('enrollment-list-api/', views.enrollmentList, name="enrollment-list-api"),
+    path('enrollment-detail-api/<str:enrollment_id>', views.enrollmentDetail, name="enrollment-detail"),
+    path('enrollment-create/', views.enrollmentCreate, name="enrollment-create"),
 ]
