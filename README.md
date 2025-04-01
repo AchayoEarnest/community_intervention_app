@@ -6,28 +6,29 @@ The Community Intervention App is a Django-based web application designed to tra
 
 ## Features
 
-• User Authentication: Secure login and registration system.
-• Enrollment Management: Add and track enrolled individuals.
-• Intervention Tracking: Record interventions with timestamps.
-• Search & Filtering: Easily find enrollments and interventions.
-• User-Friendly Interface: Simple and intuitive design.
+- User Authentication: Secure login and registration system.
+- Enrollment Management: Add and track enrolled individuals.
+- Intervention Tracking: Record interventions with timestamps.
+- Search & Filtering: Easily find enrollments and interventions.
+- User-Friendly Interface: Simple and intuitive design.
 
 ## Technologies Used
 
-• Backend: Django, Django REST Framework
-• Frontend: HTML, CSS, Bootstrap
-• Database: SQLite3
-• Authentication: Django Authentication System
+- Backend: Django, Django REST Framework
+- Frontend: HTML, CSS, Bootstrap
+- Database: SQLite3
+- Authentication: Django Authentication System
 
 ## Installation
 
 ## Prerequisites
 
 Ensure you have the following installed:
-• Python 3.8+
-• Django 4+
-• SQLite3
-• Virtual environment
+
+- Python 3.8+
+- Django 4+
+- SQLite3
+- Virtual environment
 
 ## Setup
 
@@ -65,16 +66,16 @@ Ensure you have the following installed:
    python manage.py runserver
 ```
 
-Access the app at http://127.0.0.1:8000/
-Usage
-User Registration & Login
-• Users can sign up and log in to access the dashboard.
-Enrolling Community Members
-• Navigate to Enrollments → Add Enrollment to register a new individual.
-Recording Interventions
-• Select an enrolled individual and add an intervention record.
-Viewing Reports
-• Administrators can filter and view interventions by date, category, or user.
+- Access the app at http://127.0.0.1:8000/
+  Usage
+  User Registration & Login
+- Users can sign up and log in to access the dashboard.
+  Enrolling Community Members
+- Navigate to Enrollments → Add Enrollment to register a new individual.
+  Recording Interventions
+- Select an enrolled individual and add an intervention record.
+  Viewing Reports
+- Administrators can filter and view interventions by date, category, or user.
 
 ## API Endpoints
 
@@ -87,9 +88,9 @@ POST /api/interventions/ Record a new intervention
 
 ## Future Enhancements
 
-• Export reports as XLS/CSV
-• SMS/Email notifications for interventions
-• Advanced analytics dashboard
+- Export reports as XLS/CSV
+- SMS/Email notifications for interventions
+- Advanced analytics dashboard
 
 ## Contributing
 
