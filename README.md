@@ -32,7 +32,7 @@ Ensure you have the following installed:
 ## Setup
 
 1. Clone the Repository
-2. git clone https://github.com/achayoearnest/community-intervention-app.git
+2. git clone https://github.com/AchayoEarnest/community_intervention_app.git
    cd community-intervention-app
 3. Create a Virtual Environment
 4. python -m venv venv
@@ -78,7 +78,8 @@ Viewing Reports
 
 ## API Endpoints
 
-Method Endpoint Description
+## Method Endpoint Description
+
 GET /enrollment-list-api/ Get all enrollments
 POST /enrollment-create/ Create a new enrollment
 GET /api/interventions/ Get all interventions
