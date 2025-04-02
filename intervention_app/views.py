@@ -176,7 +176,7 @@ def enrollmentDelete(request, enrollment_id):
 
     return Response("AYP successfully deleted!")
 
-
+@login_required
 def ayp_interventions(request):
     query = request.GET.get('q')
     enrollment = None

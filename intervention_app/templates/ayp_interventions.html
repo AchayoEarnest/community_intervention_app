@@ -32,6 +32,7 @@
         <th>Intervention Name</th>
         <th>Date Cartegory</th>
         <th>Intervention Date</th>
+        <th>Comments</th>
       </tr>
     </thead>
     <tbody>
@@ -40,10 +41,11 @@
         <td>{{ intervention.intervention_name }}</td>
         <td>{{ intervention.intervention_cartegory }}</td>
         <td>{{ intervention.date_of_intervention }}</td>
+        <td>{{ intervention.comments }}</td>
       </tr>
       {% empty %}
       <tr>
-        <td colspan="3">No interventions found</td>
+        <td colspan="4">No interventions found</td>
       </tr>
       {% endfor %}
     </tbody>
