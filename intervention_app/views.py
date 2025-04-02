@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, EnrollmentForm, InterventionForm
-from .models import Enrollment
+from .models import Enrollment, Intervention
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -174,3 +174,22 @@ def enrollmentDelete(request, enrollment_id):
     enrollment.delete()
 
     return Response("AYP successfully deleted!")
+
+
+def ayp_interventions(request):
+    query = request.GET.get('q')
+    enrollment = None
+    interventions = []
+
+    if query:
+        try:
+            enrollment = Enrollment.objects.get(id=query)
+            interventions = enrollment.interventions.all()
+        except Enrollment.DoesNotExist:
+            enrollment = None
+
+    return render(request, 'enrollment_interventions.html', {
+        'enrollment':enrollment,
+        'interventions': interventions,
+        'query': query,
+    })

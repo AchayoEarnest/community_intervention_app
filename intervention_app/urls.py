@@ -14,6 +14,7 @@ urlpatterns = [
     path('delete_ayp_enrollment_record/<int:enrollment_id>/', views.delete_ayp_enrollment_record, name="delete_ayp_enrollment_record" ),
     path('update_ayp_enrollment_record/<int:enrollment_id>/', views.update_ayp_enrollment_record, name="update_ayp_enrollment_record" ),
     path('api/', views.apiOverview, name="api-overview"),
+    path('ayp-interventions/', views.ayp_interventions, name='ayp_interventions'),
 
     # api urls
     path('enrollment-list-api/', views.enrollmentList, name="enrollment-list-api"),

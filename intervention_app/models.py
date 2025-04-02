@@ -9,6 +9,7 @@ phone_validator = RegexValidator(r'^\+?\d{10,12}$', 'Enter a valid phone number.
 class Enrollment(models.Model):
     name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
+    date_of_enrollment = models.DateTimeField(auto_now_add=True)
     contact_phone = models.CharField(max_length=12)
     county = models.CharField(max_length=100)
     sub_county = models.CharField(max_length=100)

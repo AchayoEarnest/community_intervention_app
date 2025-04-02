@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <h2>Client Interventions</h2>
+  <form method="GET">
+    <input
+      type="text"
+      name="q"
+      placeholder="Search by DREAMS ID..."
+      value="{{ query }}"
+    />
+    <button type="submit">Search</button>
+  </form>
+
+  {% if client %}
+  <div style="background-color: #f9e79f; padding: 15px; margin-top: 20px">
+    <h3>IMPLEMENTING PARTNER: Cahayo Health Solutions</h3>
+    <p><strong>Client:</strong> {{ enrollment.name }}</p>
+    <p><strong>DREAMS ID:</strong> {{ enrollment.dreams_id }}</p>
+    <p>
+      <strong>Date of Birth:</strong> {{ enrollment.date_of_birth }} <p>(Age:{{enrollment.age}})</p>
+    </p>
+    <p><strong>Date Enrolled:</strong> {{ enrollment.date_enrolled }}</p>
+    <p><strong>Phone Number:</strong> {{ enrollment.phone_number }}</p>
+  </div>
+
+  <h3>Interventions</h3>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Intervention Type</th>
+        <th>Date Completed</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for intervention in interventions %}
+      <tr>
+        <td>{{ intervention.intervention_type }}</td>
+        <td>{{ intervention.date_completed }}</td>
+        <td>{{ intervention.comment }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3">No interventions found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% elif query %}
+  <p>No client found with this DREAMS ID.</p>
+  {% endif %}
+</div>
+{% endblock %}
