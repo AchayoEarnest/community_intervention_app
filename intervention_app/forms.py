@@ -55,4 +55,6 @@ class InterventionForm(forms.ModelForm):
 
 		widgets = {
             'updated_by': forms.HiddenInput(),
+			'enrollment': forms.HiddenInput(),
+
         }

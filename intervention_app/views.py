@@ -77,6 +77,7 @@ def add_enrollment(request):
 @login_required
 def add_intervention(request, enrollment_id):
     enrollment = get_object_or_404(Enrollment, id=enrollment_id)
+    interventions = Intervention.objects.filter(enrollment=enrollment)
     if request.method == "POST":
         form = InterventionForm(request.POST)
         if form.is_valid():
@@ -85,11 +86,11 @@ def add_intervention(request, enrollment_id):
             intervention.enrollment = enrollment
             intervention.save()
 
-            return redirect('enrollment_detail', enrollment_id = enrollment.id)
+            return redirect('ayp_interventions')
         
     else: 
         form = InterventionForm(initial={'enrollment': enrollment})
-    return render(request, 'add_intervention.html', {'form' : form})
+    return render(request, 'add_intervention.html', {'form' : form, 'interventions':interventions })
 
 @login_required
 def ayp_enrollment_record(request, enrollment_id):
@@ -188,7 +189,7 @@ def ayp_interventions(request):
         except Enrollment.DoesNotExist:
             enrollment = None
 
-    return render(request, 'enrollment_interventions.html', {
+    return render(request, 'ayp_interventions.html', {
         'enrollment':enrollment,
         'interventions': interventions,
         'query': query,

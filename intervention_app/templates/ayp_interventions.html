@@ -1,43 +1,45 @@
 {% extends "base.html" %} {% block content %}
 <div class="container">
-  <h2>Client Interventions</h2>
+  <h2>Interventions Page</h2>
   <form method="GET">
     <input
       type="text"
       name="q"
-      placeholder="Search by DREAMS ID..."
+      placeholder="Search by AYP ID..."
       value="{{ query }}"
     />
     <button type="submit">Search</button>
   </form>
 
-  {% if client %}
+  {% if enrollment %}
   <div style="background-color: #f9e79f; padding: 15px; margin-top: 20px">
-    <h3>IMPLEMENTING PARTNER: Cahayo Health Solutions</h3>
-    <p><strong>Client:</strong> {{ enrollment.name }}</p>
-    <p><strong>DREAMS ID:</strong> {{ enrollment.dreams_id }}</p>
+    <h3>AYP SUMMARY DETAILS:</h3>
     <p>
-      <strong>Date of Birth:</strong> {{ enrollment.date_of_birth }} <p>(Age:{{enrollment.age}})</p>
+      <strong>AYP Name:</strong> {{ enrollment.name }} | (Phone:
+      {{enrollment.contact_phone }})
     </p>
-    <p><strong>Date Enrolled:</strong> {{ enrollment.date_enrolled }}</p>
-    <p><strong>Phone Number:</strong> {{ enrollment.phone_number }}</p>
+    <p><strong>AYP ID:</strong> {{ enrollment.id }}</p>
+    <p>
+      <strong>Date of Birth:</strong> {{ enrollment.date_of_birth }} (Age:
+      {{enrollment.age }})
+    </p>
   </div>
 
   <h3>Interventions</h3>
-  <table border="1">
-    <thead>
+  <table class="table table-striped">
+    <thead class="table-dark">
       <tr>
-        <th>Intervention Type</th>
-        <th>Date Completed</th>
-        <th>Comment</th>
+        <th>Intervention Name</th>
+        <th>Date Cartegory</th>
+        <th>Intervention Date</th>
       </tr>
     </thead>
     <tbody>
       {% for intervention in interventions %}
       <tr>
-        <td>{{ intervention.intervention_type }}</td>
-        <td>{{ intervention.date_completed }}</td>
-        <td>{{ intervention.comment }}</td>
+        <td>{{ intervention.intervention_name }}</td>
+        <td>{{ intervention.intervention_cartegory }}</td>
+        <td>{{ intervention.date_of_intervention }}</td>
       </tr>
       {% empty %}
       <tr>
@@ -46,8 +48,11 @@
       {% endfor %}
     </tbody>
   </table>
+  <a href="{% url 'add_intervention' enrollment.id%}" class="btn btn-primary"
+    >Add Intervention</a
+  >
   {% elif query %}
-  <p>No client found with this DREAMS ID.</p>
+  <p>No enrollment found with this DREAMS ID.</p>
   {% endif %}
 </div>
 {% endblock %}
