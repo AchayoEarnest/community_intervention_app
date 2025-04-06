@@ -178,7 +178,7 @@ def enrollmentDelete(request, enrollment_id):
 
 @login_required
 def ayp_interventions(request):
-    query = request.GET.get('q')
+    query = request.GET.get('q', '')
     enrollment = None
     interventions = []
 
