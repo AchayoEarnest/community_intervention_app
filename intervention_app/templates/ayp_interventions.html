@@ -33,6 +33,7 @@
         <th>Date Cartegory</th>
         <th>Intervention Date</th>
         <th>Comments</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -42,7 +43,15 @@
         <td>{{ intervention.intervention_cartegory }}</td>
         <td>{{ intervention.date_of_intervention }}</td>
         <td>{{ intervention.comments }}</td>
-      </tr>
+        <td><a
+          href="#"
+          class="btn btn-danger"
+          >Delete</a
+        >
+        <a
+          href="#"
+          class="btn btn-primary"
+          >Update</a</td>
       {% empty %}
       <tr>
         <td colspan="4">No interventions found</td>
