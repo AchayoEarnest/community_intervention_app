@@ -66,7 +66,7 @@ Ensure you have the following installed:
    python manage.py runserver
 ```
 
-- Access the app at http://127.0.0.1:8000/
+- Access the app at http://127.0.0.1:8000/ or https://community-interventio-app-09c22f89f155.herokuapp.com/ 
   Usage
   User Registration & Login
 - Users can sign up and log in to access the dashboard.
