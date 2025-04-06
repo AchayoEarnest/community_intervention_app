@@ -1,1 +1,1 @@
-web: gunicorn community_intervention_app.wsgi --log-file -
+web: gunicorn intervention_app.wsgi --log-file -
