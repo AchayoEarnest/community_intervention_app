@@ -168,7 +168,7 @@ def enrollmentUpdate(request, enrollment_id):
 
     return Response(serializer.data)
 
-
+# api delete view
 @api_view(['DELETE'])
 def enrollmentDelete(request, enrollment_id):
     enrollment = Enrollment.objects.get(id=enrollment_id)
@@ -176,6 +176,7 @@ def enrollmentDelete(request, enrollment_id):
 
     return Response("AYP successfully deleted!")
 
+# search logic for interventions
 @login_required
 def ayp_interventions(request):
     query = request.GET.get('q', '')
