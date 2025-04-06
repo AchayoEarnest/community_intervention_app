@@ -1,1 +1,1 @@
-web: gunicorn intervention_app.wsgi --log-f
+web: gunicorn intervention_app.wsgi --log-file gunicorn.log
