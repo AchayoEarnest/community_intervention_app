@@ -1,3 +1,4 @@
+# Importing modules ...
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -12,15 +13,16 @@ from .serializers import EnrollmentSerializer
 
 # Create your views here.
 
+# This is homepage view thats list enrollments and handles login
 def home(request):
     enrollments = Enrollment.objects.all()
 
-    # find out if logging in
+    # find out if logging in via POST
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
 
-        #Authenticate user
+        #Authenticate user credentials
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -30,20 +32,22 @@ def home(request):
             messages.success(request, "Username or password is incorrect, please try again!")
             return redirect('home')
     else:
+        # shows hompage with enrolled lists
         return render(request, 'home.html', {'enrollments': enrollments})
 
-
+# Logs out the loggedIn 
 def logout_user(request):
     logout(request)
     messages.success(request, "You have been logged out...")
     return redirect('home')
 
+# User registration
 def register_user(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-			# Authenticate and login
+			# Authenticate and login the user automatically 
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
@@ -56,10 +60,11 @@ def register_user(request):
     
     return render(request, 'register.html', {'form':form})
     
-
+# Rreports page
 def reports(request):
     return render(request, 'reports.html')
 
+# Add new enrollment
 @login_required
 def add_enrollment(request):
     if request.method == "POST":
@@ -74,6 +79,7 @@ def add_enrollment(request):
         form = EnrollmentForm(initial={'user': request.user})
     return render(request, 'add_enrollment.html', {'form': form})
 
+# Add an intervention to a specific enrollment
 @login_required
 def add_intervention(request, enrollment_id):
     enrollment = get_object_or_404(Enrollment, id=enrollment_id)
@@ -92,6 +98,7 @@ def add_intervention(request, enrollment_id):
         form = InterventionForm(initial={'enrollment': enrollment})
     return render(request, 'add_intervention.html', {'form' : form, 'interventions':interventions })
 
+# View a specific AYP enrollment record
 @login_required
 def ayp_enrollment_record(request, enrollment_id):
     if request.user.is_authenticated:
@@ -102,6 +109,7 @@ def ayp_enrollment_record(request, enrollment_id):
         messages.success(request, "You must be logged in first to view that page!")
         return redirect('home')
 
+# Delete an AYP enrollment record
 @login_required
 def delete_ayp_enrollment_record(request, enrollment_id):
     if request.user.is_authenticated:
@@ -113,7 +121,7 @@ def delete_ayp_enrollment_record(request, enrollment_id):
         messages.success(request, "You must be logged in first to perform this action!")
         return redirect('home')
 
-
+# Update an existing AYP enrollment record
 @login_required
 def update_ayp_enrollment_record(request, enrollment_id):
     if request.user.is_authenticated:
@@ -128,7 +136,7 @@ def update_ayp_enrollment_record(request, enrollment_id):
         messages.success(request, "You must be logged in first to perform this action!")
         return redirect('home')
 
-# API Views
+# API Views: overview of available endpoints
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
@@ -137,18 +145,21 @@ def apiOverview(request):
     }
     return Response(api_urls)
 
+# API view: list of existing enrollment list in api
 @api_view(['GET'])
 def enrollmentList(request):
     enrollments = Enrollment.objects.all()
     serializer = EnrollmentSerializer(enrollments, many=True)
     return Response(serializer.data)
 
+# API view: retrieve single enrollment details
 @api_view(['GET'])
 def enrollmentDetail(request, enrollment_id):
     enrollment = Enrollment.objects.get(id=enrollment_id)
     serializer = EnrollmentSerializer(enrollment, many=False)
     return Response(serializer.data)
 
+# API view: Create a new enrollment
 @api_view(['POST'])
 def enrollmentCreate(request):
     serializer = EnrollmentSerializer(data=request.data)
@@ -158,6 +169,7 @@ def enrollmentCreate(request):
 
     return Response(serializer.data)
 
+# API view: update an enrollment 
 @api_view(['POST'])
 def enrollmentUpdate(request, enrollment_id):
     enrollment = Enrollment.objects.get(id=enrollment_id)

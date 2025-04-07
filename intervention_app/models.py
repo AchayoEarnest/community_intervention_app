@@ -2,10 +2,13 @@ from django.contrib.auth import get_user_model
 from django.core.validators import RegexValidator
 from django.db import models
 
+# Get the custom user model
 User = get_user_model()
 
+# Phone number validator
 phone_validator = RegexValidator(r'^\+?\d{10,12}$', 'Enter a valid phone number.')
 
+#Enrollment model
 class Enrollment(models.Model):
     name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
@@ -24,7 +27,7 @@ class Enrollment(models.Model):
     def __str__(self):
         return f"{self.name} ({self.age} years old)"
 
-
+#Intervention model
 class Intervention(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, related_name='interventions')
     intervention_name = models.CharField(max_length=100)
